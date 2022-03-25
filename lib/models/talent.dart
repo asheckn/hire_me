@@ -30,7 +30,7 @@ class Talent {
   String? linkedIn;
   String? email;
   int? expectedSalary;
-  int? yearsOfExperience;
+  double? yearsOfExperience;
   String? status;
   DateTime? dateCreated;
   DateTime? dateModified;
