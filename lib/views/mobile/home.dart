@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hire_me/constants/palette.dart';
+import 'package:hire_me/constants/routes.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class HomeMobile extends StatefulWidget {
@@ -45,8 +46,10 @@ class _HomeMobileState extends State<HomeMobile> {
                               ),
                               child:
                             TextButton(
-                              onPressed: (){},
-                              child: Text("Start Hiring"),),),
+                              onPressed: (){
+                                Navigator.pushNamed(context, Routes.talentOverview);
+                              },
+                              child: Text("View Talent"),),),
                           ),
 
                         ],)
