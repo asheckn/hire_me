@@ -137,7 +137,7 @@ class Talent {
   String? mobileNumber;
   String? firstName;
   String? lastName;
-  DateTime? dob;
+  String? dob;
   String? jobTitle;
   String? country;
   String? city;
@@ -149,8 +149,8 @@ class Talent {
   String? expectedSalary;
   int? yearsOfExperience;
   String? status;
-  DateTime? dateCreated;
-  DateTime? dateModified;
+  String? dateCreated;
+  String? dateModified;
 
   factory Talent.fromRawJson(String str) => Talent.fromJson(json.decode(str));
 
@@ -161,7 +161,7 @@ class Talent {
     mobileNumber: json["mobileNumber"] == null ? null : json["mobileNumber"],
     firstName: json["firstName"] == null ? null : json["firstName"],
     lastName: json["lastName"] == null ? null : json["lastName"],
-    dob: json["dob"] == null ? null : DateTime.parse(json["dob"]),
+    dob: json["dob"] == null ? null : json["dob"],
     jobTitle: json["jobTitle"] == null ? null : json["jobTitle"],
     country: json["country"] == null ? null : json["country"],
     city: json["city"] == null ? null : json["city"],
@@ -173,8 +173,8 @@ class Talent {
     expectedSalary: json["expectedSalary"] == null ? null : json["expectedSalary"],
     yearsOfExperience: json["yearsOfExperience"] == null ? null : json["yearsOfExperience"],
     status: json["status"] == null ? null : json["status"],
-    dateCreated: json["dateCreated"] == null ? null : DateTime.parse(json["dateCreated"]),
-    dateModified: json["dateModified"] == null ? null : DateTime.parse(json["dateModified"]),
+    dateCreated: json["dateCreated"] == null ? null : json["dateCreated"],
+    dateModified: json["dateModified"] == null ? null : json["dateModified"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -182,7 +182,7 @@ class Talent {
     "mobileNumber": mobileNumber == null ? null : mobileNumber,
     "firstName": firstName == null ? null : firstName,
     "lastName": lastName == null ? null : lastName,
-    "dob": dob == null ? null : dob!.toIso8601String(),
+    "dob": dob == null ? null : dob,
     "jobTitle": jobTitle == null ? null : jobTitle,
     "country": country == null ? null : country,
     "city": city == null ? null : city,
@@ -194,8 +194,8 @@ class Talent {
     "expectedSalary": expectedSalary == null ? null : expectedSalary,
     "yearsOfExperience": yearsOfExperience == null ? null : yearsOfExperience,
     "status": status == null ? null : status,
-    "dateCreated": dateCreated == null ? null : dateCreated!.toIso8601String(),
-    "dateModified": dateModified == null ? null : dateModified!.toIso8601String(),
+    "dateCreated": dateCreated == null ? null : dateCreated,
+    "dateModified": dateModified == null ? null : dateModified,
   };
 }
 

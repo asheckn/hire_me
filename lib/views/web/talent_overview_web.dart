@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hire_me/constants/palette.dart';
 import 'package:hire_me/models/talent.dart';
+import 'package:hire_me/services/services.dart';
 import 'package:hire_me/views/mobile/widgets/talent_card.dart';
 import 'package:hire_me/views/web/widgets/appBarWeb.dart';
 
@@ -19,7 +20,7 @@ class _TalentOverviewWebState extends State<TalentOverviewWeb> {
     firstName: "Nyasha",
     lastName: "Hove",
     mobileNumber: "0772342164",
-    dob: DateTime(1998,02,01),
+    dob: DateTime(1998,02,01).toIso8601String(),
     skills: "Flutter Mobile Dev| Python | Machine Learning | Game Developer and 3D Artist",
     country: "Zimbabwe",
     city: "Harare",
@@ -59,33 +60,48 @@ class _TalentOverviewWebState extends State<TalentOverviewWeb> {
                         ],
                       ),
                       SizedBox(height: 20,),
-                      Wrap(
-                        children: [
-                          Container(
-                              width: _talentCardWidth,
-                              child: TalentCard(talent: _talent)),
-                          SizedBox(width: 10,),
-                          Container(
-                              width: _talentCardWidth,
-                              child: TalentCard(talent: _talent)),
-                          SizedBox(width: 10,),
-                          Container(
-                              width: _talentCardWidth,
-                              child: TalentCard(talent: _talent)),
-                          SizedBox(width: 10,),
-                          Container(
-                              width: _talentCardWidth,
-                              child: TalentCard(talent: _talent)),
-                          SizedBox(width: 10,),
-                          Container(
-                              width: _talentCardWidth,
-                              child: TalentCard(talent: _talent)),
-                          SizedBox(width: 10,),
-                          Container(
-                              width: _talentCardWidth,
-                              child: TalentCard(talent: _talent)),
-                          SizedBox(width: 10,),
-                        ],
+                      FutureBuilder(
+                        future: getUsers(),
+                        builder: (context, AsyncSnapshot snapshot) {
+                          if(snapshot.data != null){
+                            return Wrap(
+                              children: [
+                                Container(
+                                    width: _talentCardWidth,
+                                    child: TalentCard(talent: _talent)),
+                                SizedBox(width: 10,),
+                                Container(
+                                    width: _talentCardWidth,
+                                    child: TalentCard(talent: _talent)),
+                                SizedBox(width: 10,),
+                                Container(
+                                    width: _talentCardWidth,
+                                    child: TalentCard(talent: _talent)),
+                                SizedBox(width: 10,),
+                                Container(
+                                    width: _talentCardWidth,
+                                    child: TalentCard(talent: _talent)),
+                                SizedBox(width: 10,),
+                                Container(
+                                    width: _talentCardWidth,
+                                    child: TalentCard(talent: _talent)),
+                                SizedBox(width: 10,),
+                                Container(
+                                    width: _talentCardWidth,
+                                    child: TalentCard(talent: _talent)),
+                                SizedBox(width: 10,),
+                              ],
+                            );
+                          }else {
+                            return Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                LinearProgressIndicator(),
+                              ],
+                            );
+                          }
+
+                        }
                       )
                     ],
                   ),

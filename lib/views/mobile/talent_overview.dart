@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hire_me/constants/palette.dart';
 import 'package:hire_me/models/talent.dart';
+import 'package:hire_me/services/services.dart';
 import 'package:hire_me/views/mobile/widgets/talent_card.dart';
 
 class TalentOverview extends StatefulWidget {
@@ -15,7 +16,7 @@ class _TalentOverviewState extends State<TalentOverview> {
     firstName: "Nyasha",
     lastName: "Hove",
     mobileNumber: "0772342164",
-    dob: DateTime(1998,02,01),
+    dob: DateTime(1998,02,01).toIso8601String(),
     skills: "Flutter Mobile Dev| Python | Machine Learning | Game Developer and 3D Artist",
     country: "Zimbabwe",
     city: "Harare",
@@ -55,13 +56,26 @@ class _TalentOverviewState extends State<TalentOverview> {
                   child: Text("Today's \nTalent List", style: TextStyle(fontSize: 45),),
             ),
             Expanded(
-              child: ListView.builder(
-                  shrinkWrap: true,
-                  physics: BouncingScrollPhysics(),
-                  itemCount: 5,
-                  itemBuilder: (BuildContext context, int index) {
-                return TalentCard(talent: _talent);
-              }),
+              child: FutureBuilder(
+                future: getUsers(),
+                builder: (context, AsyncSnapshot snapshot) {
+                  if(snapshot.data != null){
+                    List<Talent> talent = snapshot.data;
+                    return ListView.builder(
+                        shrinkWrap: true,
+                        physics: BouncingScrollPhysics(),
+                        itemCount: talent.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return TalentCard(talent: talent[index]);
+                        });
+                  }else {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+
+                }
+              ),
             ),
           ],
         ),

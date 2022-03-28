@@ -6,12 +6,14 @@ ApiService apiService = new ApiService();
 
 
 Future<List<Talent>> getUsers()async {
-  var result = await apiService.getUsers() as List;
-  List<User> users = result.map((i) => User.fromJson(i)).toList();
+  var result = await apiService.getTalent() as List;
+  List<Talent> users = result.map((i) => Talent.fromJson(i)).toList();
+  print(users);
+  print("returning users");
   return users;
 }
 
-Future<bool> updateUser(User user) async {
-  bool result = await apiService.updateUser(user);
+Future<bool> updateUser(Talent talent) async {
+  bool result = await apiService.updateTalent(talent);
   return result;
 }

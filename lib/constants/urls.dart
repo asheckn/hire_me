@@ -1,1 +1,1 @@
-const String baseUrl = "https://nyasha-api-spring-boot.herokuapp.com";
+const String baseUrl = "https://candidates-app-server.herokuapp.com";
