@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hire_me/constants/palette.dart';
 import 'package:hire_me/models/talent.dart';
+import 'package:hire_me/views/mobile/update_talent.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 
@@ -76,7 +77,7 @@ class TalentCard extends StatelessWidget {
                   children: [
                     TextButton(
                       onPressed: (){
-
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> UpdateTalent(user: talent)));
                       },
                       child: Text("View Profile"),
                     ),

@@ -1,6 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hire_me/views/mobile/home.dart';
 import 'package:hire_me/views/mobile/talent_overview.dart';
+import 'package:hire_me/views/web/home_web.dart';
 
 import 'constants/routes.dart';
 
@@ -21,13 +23,23 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      initialRoute: Routes.home,
+      initialRoute: selectPlaform(),
       routes: {
         Routes.home: (context) => HomeMobile(),
+        Routes.homeWeb: (context) => HomeWeb(),
         Routes.talentOverview: (context) => TalentOverview(),
 
       },
     );
+  }
+
+  String selectPlaform(){
+    if (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS){
+      return Routes.home;
+    }
+    else {
+        return Routes.homeWeb;
+    }
   }
 }
 

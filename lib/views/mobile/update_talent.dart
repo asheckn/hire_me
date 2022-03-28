@@ -2,24 +2,33 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:hire_me/constants/palette.dart';
 import 'package:hire_me/models/talent.dart';
 import 'package:intl/intl.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import '../../services/services.dart';
 
 
-class EditUser extends StatefulWidget {
-  EditUser({Key? key, @required required this.user}) : super(key: key);
+class UpdateTalent extends StatefulWidget {
+  UpdateTalent({Key? key, @required required this.user}) : super(key: key);
   Talent user;
 
   @override
-  _EditUserState createState() => _EditUserState();
+  _UpdateTalentState createState() => _UpdateTalentState();
 }
 
-class _EditUserState extends State<EditUser> {
+class _UpdateTalentState extends State<UpdateTalent> {
   Talent? user;
   TextEditingController firstNameController = TextEditingController();
-  TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
+  TextEditingController mobileNumberController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController expectedSalaryController = TextEditingController();
+  TextEditingController yearsOfExperienceController = TextEditingController();
+  TextEditingController countryController = TextEditingController();
+  TextEditingController cityController = TextEditingController();
+  TextEditingController zipCodeController = TextEditingController();
   TextEditingController locationController = TextEditingController();
   TextEditingController dateController = TextEditingController();
 
@@ -30,8 +39,6 @@ class _EditUserState extends State<EditUser> {
     user = widget.user;
     firstNameController.text = widget.user.firstName!;
     lastNameController.text = widget.user.lastName!;
-    locationController.text = widget.user.location!;
-    dateController.text = widget.user.dateOfBirth!.toString();
 
   }
   final _formKey = GlobalKey<FormState>();
@@ -39,7 +46,21 @@ class _EditUserState extends State<EditUser> {
   Widget build(BuildContext context) {
     return LoaderOverlay(
       child: Scaffold(
-        appBar: appBar(context, "Editing: ${widget.user.username}", false),
+        appBar: AppBar(
+          automaticallyImplyLeading: true,
+          iconTheme: IconThemeData(
+              color: Colors.black
+          ),
+          centerTitle: true,
+          title: Text("Update Talent", style: TextStyle(color: dark),),
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          actions: [
+            IconButton(onPressed: (){
+              //  todo Navigate to create candidate page
+            }, icon: Icon(Icons.add, color: dark,))
+          ],
+        ),
         body: Form(
           key: _formKey,
           child: Column(
@@ -125,12 +146,12 @@ class _EditUserState extends State<EditUser> {
                       );
                       if(newDate != null){
                         setState(() {
-                          user!.dateOfBirth = newDate;
+
                         });
                       }
 
                     },
-                    title: Text(DateFormat(DateFormat.YEAR_MONTH_DAY,).format(user!.dateOfBirth!)),
+                    title: Text(DateFormat(DateFormat.YEAR_MONTH_DAY,).format(DateTime.now())),
                   ),
                 ),
               ),
@@ -149,16 +170,16 @@ class _EditUserState extends State<EditUser> {
                     ),
                     onPressed:  () async {
                       if(_formKey.currentState!.validate()){
-                        context.loaderOverlay.show();
-                        user!.location = locationController.text;
-                        user!.firstName = firstNameController.text;
-                        user!.lastName = lastNameController.text;
-
-                        bool result =  await updateUser(user!);
-                        context.loaderOverlay.hide();
-                        if(result){
-                          Navigator.pop(context, true);
-                        }
+                        // context.loaderOverlay.show();
+                        // user!.location = locationController.text;
+                        // user!.firstName = firstNameController.text;
+                        // user!.lastName = lastNameController.text;
+                        //
+                        // bool result =  await updateUser(user!);
+                        // context.loaderOverlay.hide();
+                        // if(result){
+                        //   Navigator.pop(context, true);
+                        // }
                       }
 
                     }, child: Text("UPDATE", style: TextStyle(color: Colors.white),)),
