@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hire_me/constants/palette.dart';
 import 'package:hire_me/models/talent.dart';
 import 'package:hire_me/views/mobile/update_talent.dart';
+import 'package:hire_me/views/web/update_talent_web.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 
@@ -32,7 +34,7 @@ class TalentCard extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                height: 140,
+                height: 150,
                 width: MediaQuery.of(context).size.width,
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
@@ -52,10 +54,10 @@ class TalentCard extends StatelessWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(talent.description!, maxLines: 5, style: TextStyle(fontSize: 16), ),
+                            child: Text(talent.skills!, maxLines: 5, style: TextStyle(fontSize: 16), ),
                           ),
                           SizedBox(height: 5,),
-                          Text(" ${talent.address!.city}, ${talent.address!.country} \n\$${talent.expectedSalary}", textAlign: TextAlign.start, style: TextStyle(color: Colors.grey),),
+                          Text(" ${talent.city}, ${talent.country} \n\$${talent.expectedSalary}", textAlign: TextAlign.start, style: TextStyle(color: Colors.grey),),
                         ],
                       ),
                     ),
@@ -77,7 +79,12 @@ class TalentCard extends StatelessWidget {
                   children: [
                     TextButton(
                       onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=> UpdateTalent(user: talent)));
+                        if(defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> UpdateTalent(user: talent)));
+                        }else {
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> UpdateTalentWeb(talent: talent)));
+                        }
+
                       },
                       child: Text("View Profile"),
                     ),

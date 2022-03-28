@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hire_me/views/mobile/home.dart';
 import 'package:hire_me/views/mobile/talent_overview.dart';
 import 'package:hire_me/views/web/home_web.dart';
+import 'package:hire_me/views/web/talent_overview_web.dart';
 
 import 'constants/routes.dart';
 
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         Routes.home: (context) => HomeMobile(),
         Routes.homeWeb: (context) => HomeWeb(),
         Routes.talentOverview: (context) => TalentOverview(),
+        Routes.talentOverviewWeb: (context) => TalentOverviewWeb(),
 
       },
     );
