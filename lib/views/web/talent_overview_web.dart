@@ -3,6 +3,7 @@ import 'package:hire_me/constants/palette.dart';
 import 'package:hire_me/models/talent.dart';
 import 'package:hire_me/services/services.dart';
 import 'package:hire_me/views/mobile/widgets/talent_card.dart';
+import 'package:hire_me/views/web/update_talent_web.dart';
 import 'package:hire_me/views/web/widgets/appBarWeb.dart';
 
 class TalentOverviewWeb extends StatefulWidget {
@@ -64,33 +65,24 @@ class _TalentOverviewWebState extends State<TalentOverviewWeb> {
                         future: getUsers(),
                         builder: (context, AsyncSnapshot snapshot) {
                           if(snapshot.data != null){
+                            List<Talent> talents = snapshot.data;
                             return Wrap(
-                              children: [
-                                // Container(
-                                //     width: _talentCardWidth,
-                                //     child: TalentCard(talent: _talent)),
-                                // SizedBox(width: 10,),
-                                // Container(
-                                //     width: _talentCardWidth,
-                                //     child: TalentCard(talent: _talent)),
-                                // SizedBox(width: 10,),
-                                // Container(
-                                //     width: _talentCardWidth,
-                                //     child: TalentCard(talent: _talent)),
-                                // SizedBox(width: 10,),
-                                // Container(
-                                //     width: _talentCardWidth,
-                                //     child: TalentCard(talent: _talent)),
-                                // SizedBox(width: 10,),
-                                // Container(
-                                //     width: _talentCardWidth,
-                                //     child: TalentCard(talent: _talent)),
-                                // SizedBox(width: 10,),
-                                // Container(
-                                //     width: _talentCardWidth,
-                                //     child: TalentCard(talent: _talent)),
-                                // SizedBox(width: 10,),
-                              ],
+                              children: talents.map((user) {
+                              return Column(
+                                children: [
+                                  Container(
+                                      width: _talentCardWidth,
+                                      child: TalentCard(talent: user, onPressed: () async{
+                                        var result = await Navigator.push(context, MaterialPageRoute(builder: (context)=> UpdateTalentWeb(user: user)));
+                                        setState(() {
+
+                                        });
+                                      },)),
+                                  SizedBox(width: 10,),
+                                ],
+                              );
+
+                              }).toList(),
                             );
                           }else {
                             return Column(

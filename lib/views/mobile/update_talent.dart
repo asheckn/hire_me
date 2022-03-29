@@ -90,6 +90,7 @@ class _UpdateTalentState extends State<UpdateTalent> {
           body: Container(
             height: MediaQuery.of(context).size.height,
             child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -443,6 +444,9 @@ class _UpdateTalentState extends State<UpdateTalent> {
                               user!.dob = dob!.toIso8601String();
                               user!.status = status;
                               user!.expectedSalary = expectedSalaryController.text;
+                              user!.yearsOfExperience = int.parse(yearsOfExperienceController.text);
+                              user!.twitter = twitterController.text;
+                              user!.linkedIn = linkedInController.text;
 
                               if(isCreate){
                                 print("Creating Talent");

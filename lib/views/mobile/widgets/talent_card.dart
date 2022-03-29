@@ -8,16 +8,27 @@ import 'package:transparent_image/transparent_image.dart';
 
 
 
-class TalentCard extends StatelessWidget {
+class TalentCard extends StatefulWidget {
    TalentCard({Key? key, required this.talent, required this.onPressed}) : super(key: key);
   Talent talent;
-  String image = "https://picsum.photos/200";
   Function onPressed;
+
+  @override
+  State<TalentCard> createState() => _TalentCardState();
+}
+
+class _TalentCardState extends State<TalentCard> {
+  String image = "https://picsum.photos/200";
+
+  bool isHover = false;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       child: Container(
+        padding: EdgeInsets.only(
+            top: (isHover) ? 25 : 30.0, bottom: !(isHover) ? 25 : 30),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(14),
           color: Colors.white,
@@ -56,14 +67,14 @@ class TalentCard extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              "${talent.firstName!} ${talent.lastName!}", maxLines: 2, style: TextStyle(fontSize: 16), ),
+                              "${widget.talent.firstName!} ${widget.talent.lastName!}", maxLines: 2, style: TextStyle(fontSize: 16), ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(talent.skills!, maxLines: 5, style: TextStyle(fontSize: 14), ),
+                            child: Text(widget.talent.skills!.replaceAll("\n"," "), maxLines: 5, style: TextStyle(fontSize: 14),),
                           ),
                           SizedBox(height: 5,),
-                          Text(" ${talent.city}, ${talent.country} \n\$${talent.expectedSalary}", textAlign: TextAlign.start, style: TextStyle(color: Colors.grey),),
+                          Text(" ${widget.talent.city}, ${widget.talent.country} \n\$${widget.talent.expectedSalary}", textAlign: TextAlign.start, style: TextStyle(color: Colors.grey),),
                         ],
                       ),
                     ),
@@ -84,14 +95,14 @@ class TalentCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextButton(
-                      onPressed: ()=>onPressed(),
+                      onPressed: ()=>widget.onPressed(),
                       child: Text("View Profile"),
                     ),
 
                     Row(
                       children: [
                       // Icon(Icons.done),
-                      Text("Status: ${talent.status}")
+                      Text("Status: ${widget.talent.status}")
                     ],)
                   ],
                 ),

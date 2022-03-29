@@ -74,18 +74,9 @@ class _TalentOverviewState extends State<TalentOverview> {
                         itemCount: talent.length,
                         itemBuilder: (BuildContext context, int index) {
                           return TalentCard(talent: talent[index], onPressed: ()async {
-                              if(defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS){
-                                var result = await Navigator.push(context, MaterialPageRoute(builder: (context)=> UpdateTalent(user: talent[index])));
-                                setState(() {
-
-                                });
-                              }else {
-                                var result = await Navigator.push(context, MaterialPageRoute(builder: (context)=> UpdateTalentWeb(talent: talent[index])));
-                                setState(() {
-
-                                });
-                              }
-
+                            var result = await Navigator.push(context, MaterialPageRoute(builder: (context)=> UpdateTalent(user: talent[index])));
+                            setState(() {
+                            });
 
                           },);
                         });
