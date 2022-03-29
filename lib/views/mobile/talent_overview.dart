@@ -1,8 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hire_me/constants/palette.dart';
 import 'package:hire_me/models/talent.dart';
 import 'package:hire_me/services/services.dart';
+import 'package:hire_me/views/mobile/update_talent.dart';
 import 'package:hire_me/views/mobile/widgets/talent_card.dart';
+import 'package:hire_me/views/web/update_talent_web.dart';
 
 class TalentOverview extends StatefulWidget {
   const TalentOverview({Key? key}) : super(key: key);
@@ -40,8 +43,12 @@ class _TalentOverviewState extends State<TalentOverview> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         actions: [
-          IconButton(onPressed: (){
+          IconButton(onPressed: () async{
           //  todo Navigate to create candidate page
+            await Navigator.push(context, MaterialPageRoute(builder: (context)=> UpdateTalent(user: null,)));
+            setState(() {
+
+            });
           }, icon: Icon(Icons.add, color: dark,))
         ],
       ),
@@ -59,14 +66,28 @@ class _TalentOverviewState extends State<TalentOverview> {
               child: FutureBuilder(
                 future: getUsers(),
                 builder: (context, AsyncSnapshot snapshot) {
-                  if(snapshot.data != null){
+                  if(snapshot.hasData){
                     List<Talent> talent = snapshot.data;
                     return ListView.builder(
                         shrinkWrap: true,
                         physics: BouncingScrollPhysics(),
                         itemCount: talent.length,
                         itemBuilder: (BuildContext context, int index) {
-                          return TalentCard(talent: talent[index]);
+                          return TalentCard(talent: talent[index], onPressed: ()async {
+                              if(defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS){
+                                var result = await Navigator.push(context, MaterialPageRoute(builder: (context)=> UpdateTalent(user: talent[index])));
+                                setState(() {
+
+                                });
+                              }else {
+                                var result = await Navigator.push(context, MaterialPageRoute(builder: (context)=> UpdateTalentWeb(talent: talent[index])));
+                                setState(() {
+
+                                });
+                              }
+
+
+                          },);
                         });
                   }else {
                     return Center(

@@ -66,30 +66,30 @@ class _TalentOverviewWebState extends State<TalentOverviewWeb> {
                           if(snapshot.data != null){
                             return Wrap(
                               children: [
-                                Container(
-                                    width: _talentCardWidth,
-                                    child: TalentCard(talent: _talent)),
-                                SizedBox(width: 10,),
-                                Container(
-                                    width: _talentCardWidth,
-                                    child: TalentCard(talent: _talent)),
-                                SizedBox(width: 10,),
-                                Container(
-                                    width: _talentCardWidth,
-                                    child: TalentCard(talent: _talent)),
-                                SizedBox(width: 10,),
-                                Container(
-                                    width: _talentCardWidth,
-                                    child: TalentCard(talent: _talent)),
-                                SizedBox(width: 10,),
-                                Container(
-                                    width: _talentCardWidth,
-                                    child: TalentCard(talent: _talent)),
-                                SizedBox(width: 10,),
-                                Container(
-                                    width: _talentCardWidth,
-                                    child: TalentCard(talent: _talent)),
-                                SizedBox(width: 10,),
+                                // Container(
+                                //     width: _talentCardWidth,
+                                //     child: TalentCard(talent: _talent)),
+                                // SizedBox(width: 10,),
+                                // Container(
+                                //     width: _talentCardWidth,
+                                //     child: TalentCard(talent: _talent)),
+                                // SizedBox(width: 10,),
+                                // Container(
+                                //     width: _talentCardWidth,
+                                //     child: TalentCard(talent: _talent)),
+                                // SizedBox(width: 10,),
+                                // Container(
+                                //     width: _talentCardWidth,
+                                //     child: TalentCard(talent: _talent)),
+                                // SizedBox(width: 10,),
+                                // Container(
+                                //     width: _talentCardWidth,
+                                //     child: TalentCard(talent: _talent)),
+                                // SizedBox(width: 10,),
+                                // Container(
+                                //     width: _talentCardWidth,
+                                //     child: TalentCard(talent: _talent)),
+                                // SizedBox(width: 10,),
                               ],
                             );
                           }else {

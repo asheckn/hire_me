@@ -9,9 +9,10 @@ import 'package:transparent_image/transparent_image.dart';
 
 
 class TalentCard extends StatelessWidget {
-   TalentCard({Key? key, required this.talent}) : super(key: key);
+   TalentCard({Key? key, required this.talent, required this.onPressed}) : super(key: key);
   Talent talent;
   String image = "https://picsum.photos/200";
+  Function onPressed;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -34,7 +35,7 @@ class TalentCard extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                height: 150,
+                // height: 150,
                 width: MediaQuery.of(context).size.width,
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
@@ -54,7 +55,12 @@ class TalentCard extends StatelessWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Text(talent.skills!, maxLines: 5, style: TextStyle(fontSize: 16), ),
+                            child: Text(
+                              "${talent.firstName!} ${talent.lastName!}", maxLines: 2, style: TextStyle(fontSize: 16), ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(talent.skills!, maxLines: 5, style: TextStyle(fontSize: 14), ),
                           ),
                           SizedBox(height: 5,),
                           Text(" ${talent.city}, ${talent.country} \n\$${talent.expectedSalary}", textAlign: TextAlign.start, style: TextStyle(color: Colors.grey),),
@@ -78,14 +84,7 @@ class TalentCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextButton(
-                      onPressed: (){
-                        if(defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> UpdateTalent(user: talent)));
-                        }else {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=> UpdateTalentWeb(talent: talent)));
-                        }
-
-                      },
+                      onPressed: ()=>onPressed(),
                       child: Text("View Profile"),
                     ),
 

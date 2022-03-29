@@ -17,3 +17,8 @@ Future<bool> updateUser(Talent talent) async {
   bool result = await apiService.updateTalent(talent);
   return result;
 }
+
+Future<bool> createUser(Talent talent) async {
+  bool result = await apiService.createTalent(talent);
+  return result;
+}
