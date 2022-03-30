@@ -16,7 +16,7 @@ class _HomeMobileState extends State<HomeMobile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("SOUTHERN HIRE", style: TextStyle(color: dark),), elevation: 0, backgroundColor: Colors.transparent,),
+        title: Text("SOUTHERN HIRE", style: TextStyle(color: dark),),centerTitle: true, elevation: 0, backgroundColor: Colors.transparent,),
       body: Container(
         child: SingleChildScrollView(
             physics: BouncingScrollPhysics(),
