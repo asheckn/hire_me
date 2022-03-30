@@ -19,7 +19,7 @@ class _HomeWebState extends State<HomeWeb> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          appBar: topNavigation(_height, _width),
+          appBar: topNavigation(_height, _width, context),
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -73,11 +73,12 @@ class _HomeWebState extends State<HomeWeb> {
                                     ),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(10),
-                                      child: FadeInImage(
-                                        height: 400,
-                                        placeholder: MemoryImage(kTransparentImage),
-                                        image:
-                                        NetworkImage("https://www.pngall.com/wp-content/uploads/5/Map-of-Africa-PNG-Images.png"),fit: BoxFit.contain,),
+                                    child: Image(image: AssetImage("assets/images/Map-of-Africa-PNG-Images.png"),fit: BoxFit.contain,),
+                                    //   child: FadeInImage(
+                                    //     height: 400,
+                                    //     placeholder: MemoryImage(kTransparentImage),
+                                    //     image:
+                                    //     NetworkImage("https://www.pngall.com/wp-content/uploads/5/Map-of-Africa-PNG-Images.png"),fit: BoxFit.contain,),
                                     )
 
 
@@ -87,7 +88,7 @@ class _HomeWebState extends State<HomeWeb> {
                       ),
                       SizedBox(height: 100,),
                       HomeCardWeb(
-                        image: "https://www.honeypot.io/static/access.png",
+                        image: "assets/images/access.png",
                         title: "Active & Relevant Talent Curated Every Week",
                         subtitle: "A batch of active tech talents will appear"
                             " in your search list every Monday."
@@ -98,7 +99,7 @@ class _HomeWebState extends State<HomeWeb> {
                       SizedBox(height: 70,),
                       HomeCardWeb(
                         inverted: true,
-                        image: "https://www.honeypot.io/static/hire.png",
+                        image: "assets/images/hire.png",
                         title: "Efficient Recruiting",
                         subtitle: "Honeypot is the place to find tech"
                             " talent that companies will not find elsewhere."
@@ -108,7 +109,7 @@ class _HomeWebState extends State<HomeWeb> {
                       ),
                       SizedBox(height: 70,),
                       HomeCardWeb(
-                        image: "https://www.honeypot.io/static/skills.png",
+                        image: "assets/images/skills.png",
                         title: "Verified Talent",
                         subtitle: "Developers are pre-screened through"
                             " technical evaluations and "
@@ -121,7 +122,7 @@ class _HomeWebState extends State<HomeWeb> {
                       SizedBox(height: 70,),
                       HomeCardWeb(
                         inverted: true,
-                        image: "https://www.honeypot.io/static/visa.png",
+                        image: "assets/images/visa.png",
                         title: "Visa Support: Hire Qualified International Talent",
                         subtitle: "We offer visa and relocation support for local and international talent."
                             " International Hiring means you have access to a "

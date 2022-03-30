@@ -70,7 +70,7 @@ class _UpdateTalentWebState extends State<UpdateTalentWeb> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
-      appBar: topNavigation(_height, _width),
+      appBar: topNavigation(_height, _width, context),
       body: LoaderOverlay(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 8),
@@ -415,7 +415,7 @@ class _UpdateTalentWebState extends State<UpdateTalentWeb> {
                               padding: inputPadding,
                               child:  TextFormField(
                                 controller: skillsController,
-                                maxLength: 100,
+                                maxLength: 50,
                                 validator: (value){
                                   if(value==null || value==""){
                                     return "Required!";
@@ -504,6 +504,13 @@ class _UpdateTalentWebState extends State<UpdateTalentWeb> {
                                 ),
                               ),
                             ),
+                            Container(
+                                width: MediaQuery.of(context).size.width,
+                                child: const Padding(
+                                  padding:  EdgeInsets.symmetric(horizontal: 12),
+                                  child:  Text("Application Status"),
+                                )),
+
                             Container(
                               padding: EdgeInsets.all(12),
                               width: MediaQuery.of(context).size.width,

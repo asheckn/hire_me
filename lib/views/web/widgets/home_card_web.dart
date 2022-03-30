@@ -30,10 +30,10 @@ class _HomeCardWebState extends State<HomeCardWeb> {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: FadeInImage(
-                      placeholder: MemoryImage(kTransparentImage),
-                      image:
-                      NetworkImage(widget.image),fit: BoxFit.contain,),
+                    child: Image(image: AssetImage(widget.image,),fit: BoxFit.contain,),
+                    // child: FadeInImage(
+                    //   placeholder: MemoryImage(kTransparentImage),
+                    //   image: NetworkImage(widget.image),fit: BoxFit.contain,),
                   )
 
 

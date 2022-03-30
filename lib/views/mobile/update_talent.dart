@@ -176,7 +176,7 @@ class _UpdateTalentState extends State<UpdateTalent> {
                       child: Container(
                         child: TextFormField(
                           maxLines: 2,
-                          maxLength: 100,
+                          maxLength: 50,
                           validator: (value){
                             if(value == null || value == ""){
                               return "Required";
@@ -382,6 +382,12 @@ class _UpdateTalentState extends State<UpdateTalent> {
                       ),
                     ),
                     Container(
+                        width: MediaQuery.of(context).size.width,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: Text("Status"),
+                        )),
+                    Container(
                       padding: EdgeInsets.all(12),
                       width: MediaQuery.of(context).size.width,
                       child: DropdownButtonFormField(
@@ -439,6 +445,7 @@ class _UpdateTalentState extends State<UpdateTalent> {
                               user!.jobTitle = jobTitleController.text;
                               user!.skills = skillsController.text;
                               user!.country = countryController.text;
+                              user!.email = emailController.text;
                               user!.city = cityController.text;
                               user!.zipCode = zipCodeController.text;
                               user!.dob = dob!.toIso8601String();

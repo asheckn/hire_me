@@ -36,7 +36,7 @@ class _TalentOverviewWebState extends State<TalentOverviewWeb> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-          appBar: topNavigation(_height, _width),
+          appBar: topNavigation(_height, _width, context),
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -57,7 +57,12 @@ class _TalentOverviewWebState extends State<TalentOverviewWeb> {
                                   color: Colors.lightBlue.withOpacity(0.5),
                                   borderRadius: BorderRadius.circular(8)
                               ),
-                              child: TextButton(onPressed: (){}, child: Text("+ Add Talent", style: TextStyle(color: dark),))),
+                              child: TextButton(onPressed: () async {
+                                 await Navigator.push(context, MaterialPageRoute(builder: (context)=> UpdateTalentWeb(user: null)));
+                                setState(() {
+
+                                });
+                              }, child: Text("+ Add Talent", style: TextStyle(color: dark),))),
                         ],
                       ),
                       SizedBox(height: 20,),
@@ -67,6 +72,7 @@ class _TalentOverviewWebState extends State<TalentOverviewWeb> {
                           if(snapshot.data != null){
                             List<Talent> talents = snapshot.data;
                             return Wrap(
+                              alignment: WrapAlignment.start,
                               children: talents.map((user) {
                               return Column(
                                 children: [

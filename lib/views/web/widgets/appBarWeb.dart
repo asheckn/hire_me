@@ -1,8 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:hire_me/constants/palette.dart';
+import 'package:hire_me/constants/routes.dart';
 
-AppBar topNavigation(double height, double width){
+AppBar topNavigation(double height, double width, BuildContext context){
   double _height = height;
   double _width = width;
   return AppBar(
@@ -25,7 +26,9 @@ AppBar topNavigation(double height, double width){
         Container(
             height: _height,
             width: _width,
-            child: TextButton(onPressed: (){}, child: Text("For Employers", style: TextStyle(color: Colors.grey),))),
+            child: TextButton(onPressed: (){
+              Navigator.pushNamed(context, Routes.homeWeb);
+            }, child: Text("For Employers", style: TextStyle(color: Colors.grey),))),
         SizedBox(
 
           width: 30,),

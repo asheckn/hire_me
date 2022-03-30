@@ -27,10 +27,9 @@ class _TalentCardState extends State<TalentCard> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       child: Container(
-        padding: EdgeInsets.only(
-            top: (isHover) ? 25 : 30.0, bottom: !(isHover) ? 25 : 30),
+        height: cardHeight(),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(12),
           color: Colors.white,
           boxShadow: [
             BoxShadow(
@@ -42,7 +41,7 @@ class _TalentCardState extends State<TalentCard> {
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           child: Column(
             children: [
               Container(
@@ -85,12 +84,13 @@ class _TalentCardState extends State<TalentCard> {
                   ],
                 ),
               ),
+              Expanded(child: Container()),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Divider(),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -112,5 +112,14 @@ class _TalentCardState extends State<TalentCard> {
         ),
       ),
     );
+  }
+
+  double cardHeight(){
+    if (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS){
+      return 210;
+    }
+    else {
+      return 180;
+    }
   }
 }
